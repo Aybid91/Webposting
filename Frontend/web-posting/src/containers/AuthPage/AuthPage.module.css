@@ -1,0 +1,50 @@
+.AuthPageroot{
+    width: 100%;
+    height: 100vh;
+    background-color: #cecece;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+.contentmodal{
+    padding: 50px;
+    /* border-radius: 20px; */
+    background-color: #fff;
+    min-width: 576px;
+}
+.contentmodal span {
+    margin: auto auto 20px;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 50px;
+}
+.formtopcontainer{
+    padding: 20px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: fit-content;
+}
+.tabs{
+    display: flex;
+    justify-content: center;
+    & button:first-child{
+        margin-right: 20px;
+    }
+    & button{
+        font-size: 21px;
+        background-color: unset;
+        padding: 0 0 5px;
+        border: 0;
+        border-bottom: 2px solid transparent;
+        &:hover{
+            color: #c93b54;
+            cursor: pointer;
+            transform:scale(1.04);
+        }
+    }
+}
+.activeTab{
+    border-bottom-color: black !important;
+}

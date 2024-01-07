@@ -1,0 +1,43 @@
+.inputdiv{
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+    & label{
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+    & input{
+        font-size: 18px;
+        padding: 10px;
+    }
+}
+.finalbtn{
+    padding: 15px 25px;
+    min-width: 150px;
+    border: none;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    &:disabled{
+        background-color: #6b6b6b;
+        cursor: not-allowed;
+    }
+}
+.signupbtn{
+    background-color: green;
+    margin-right: 10px;
+    &:hover{
+    background-color: #013b01;
+    }
+}
+.resetbtn{
+    background-color: orangered;
+    &:hover{
+    background-color: #9d2a00;
+    }
+}
+.btndiv{
+    margin: 50px 0 0;
+}
