@@ -68,13 +68,14 @@ const FeedCard = (props) => {
           </span>
         )}
       </p>
-      {
-        <button type="button" onClick={handleViewPost}>
-          View Post
-        </button>
-      }
+
       {commentValues.isOpen ? (
-        <div>
+        <div className={css.addcomdv}>
+          <button type="button" onClick={comment}>
+            {!commentValues.comment && commentValues.isOpen
+              ? "Close"
+              : "Submit"}
+          </button>
           <input
             onChange={(e) => {
               const value = e.target.value;
@@ -83,23 +84,23 @@ const FeedCard = (props) => {
             value={commentValues.comment}
             type="text"
           />
-          <button type="button" onClick={comment}>
-            {!commentValues.comment && commentValues.isOpen
-              ? "close"
-              : "Submit"}
-          </button>
         </div>
       ) : (
-        <button
-          type="button"
-          onClick={() => {
-            if (currentUser?._id)
-              setCommentValues({ ...commentValues, isOpen: true });
-          }}
-        >
-          {"comment"}
-        </button>
+        <div className={css.addcomdv}>
+          <button
+            type="button"
+            onClick={() => {
+              if (currentUser?._id)
+                setCommentValues({ ...commentValues, isOpen: true });
+            }}
+          >
+            {"Comment"}
+          </button>
+        </div>
       )}
+      <button className={css.viewpost} type="button" onClick={handleViewPost}>
+        View Post
+      </button>
     </div>
   );
 };

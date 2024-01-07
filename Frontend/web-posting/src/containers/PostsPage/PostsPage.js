@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import css from "./PostsPage.module.css";
 import { addPost, getCurrentUserPosts, updatePost } from "./PostsPage.duck";
 import FeedCard from "../../components/FeedCard/FeedCard";
+import classNames from "classnames";
 const initialStatePost = {
   title: "",
   content: "",
@@ -108,10 +109,15 @@ const PostsPage = () => {
             ADD POST
           </button>
         </div>
-        <div className={css.filters}>
+        <div
+          className={classNames(css.filters, {
+            [css.lightup]: location.search.includes("postType=private"),
+          })}
+        >
           <div>
-            <label>Private Only</label>
+            <label htmlFor="pvtonly">Private Only</label>
             <input
+              id="pvtonly"
               checked={location.search.includes("postType=private")}
               type="checkbox"
               onChange={(e) => {

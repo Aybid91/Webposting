@@ -41,23 +41,22 @@ const ViewPostPage = () => {
           <span>POST</span>
         </div>
         <div className={css.postdetcont}>
+          <div className={css.postdetdiv}>
+            <label>Title</label>
+            <p>{title}</p>
+          </div>
+          <div className={css.postdetdiv}>
+            <label>Author</label>
+            <p>{authorName}</p>
+          </div>
+          <div className={css.postdetdiv}>
+            <label>Desciption</label>
+            <p>{content}</p>
+          </div>
           <div>
-            <div>
-              <label>Title</label>
-              <p>{title}</p>
-            </div>
-            <div>
-              <label>Author</label>
-              <p>{authorName}</p>
-            </div>
-            <div>
-              <label>Desciption</label>
-              <p>{content}</p>
-            </div>
-            <div>
-              <div>Comments</div>
-              <div>
-                {" "}
+            <p className={css.commenttitle}>Comments</p>
+            {isAuthenticated ? (
+              <div className={css.addcomdv}>
                 <button
                   type="button"
                   onClick={(e) => {
@@ -96,9 +95,11 @@ const ViewPostPage = () => {
                       : "Close"
                     : "Post a comment"}
                 </button>
+
                 {postComment ? (
                   <input
                     type="text"
+                    placeholder="What do you feel"
                     onChange={(e) => {
                       const value = e.target.value;
                       setNewComment(value);
@@ -107,21 +108,21 @@ const ViewPostPage = () => {
                   />
                 ) : null}
               </div>
-              <div>
-                {comments?.length > 0
-                  ? comments.map((com) => {
-                      const { comment } = com;
-                      const authorName = com?.commentor?.name;
+            ) : null}
+            <div>
+              {comments?.length > 0
+                ? comments.map((com) => {
+                    const { comment } = com;
+                    const authorName = com?.commentor?.name;
 
-                      return (
-                        <div>
-                          <p>{authorName}</p>
-                          <p>{comment}</p>
-                        </div>
-                      );
-                    })
-                  : "No comments"}
-              </div>
+                    return (
+                      <div className={css.comment}>
+                        <p>{authorName}</p>
+                        <p>{comment}</p>
+                      </div>
+                    );
+                  })
+                : "No comments"}
             </div>
           </div>
         </div>

@@ -19,7 +19,7 @@ const signup = async (req, res) => {
       sameSite: "lax",
     });
 
-    return res.status(200).send("signup success");
+    return res.status(200).send(user);
   } catch (error) {
     console.log(error);
     return res.status(500).send("signup failed");

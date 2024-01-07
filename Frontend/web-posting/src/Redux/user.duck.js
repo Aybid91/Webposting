@@ -8,11 +8,14 @@ export const LOGGED_OUT = "LOGGED_OUT";
 
 export const LOGGED_IN = "LOGGED_IN";
 
+export const LOGGED_IN_FAILED = "LOGGED_IN_FAILED";
+
 const initialState = {
   currentUser: null,
   isAuthenticated: false,
   currentUserRequest: false,
   currentUserError: null,
+  loginError: null,
 };
 export default function reducer(state = initialState, action = {}) {
   const { type, payload } = action;
@@ -38,6 +41,7 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         isAuthenticated: false,
+        loginError: null,
         currentUserRequest: false,
         currentUserError: null,
         currentUser: null,
@@ -47,9 +51,17 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         currentUser: payload,
         isAuthenticated: true,
+        loginError: null,
         currentUserRequest: false,
         currentUserError: null,
       };
+    case LOGGED_IN_FAILED:
+      return {
+        ...state,
+        isAuthenticated: false,
+        loginError: payload,
+      };
+
     default:
       return state;
   }
@@ -76,6 +88,10 @@ export const loggedinAction = (user) => ({
 export const loggedoutAction = () => ({
   type: LOGGED_OUT,
   payload: {},
+});
+export const loggedError = (e) => ({
+  type: LOGGED_IN_FAILED,
+  payload: e,
 });
 
 export const fetchUserData = () => async (dispatch, getState) => {
@@ -108,5 +124,21 @@ export const logout = () => async (dispatch, getState) => {
     .then((resp) => {
       dispatch(loggedoutAction());
     })
-    .catch();
+    .catch((error) => {
+      console.log(error);
+      dispatch(loggedError(error));
+    });
+};
+export const signup = (values) => async (dispatch, getState) => {
+  axios
+    .post(`http://localhost:3500/api/auth/signup`, values, {
+      withCredentials: true,
+    })
+    .then((resp) => {
+      dispatch(loggedinAction(resp.data));
+    })
+    .catch((error) => {
+      console.log(error);
+      dispatch(loggedError(error));
+    });
 };

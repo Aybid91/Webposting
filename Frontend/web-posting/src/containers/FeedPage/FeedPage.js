@@ -35,17 +35,18 @@ const FeedPage = () => {
           <span>YOUR FEED</span>
         </div>
         <div className={css.filters}>
-          <div>
-            <label>Search by keyword</label>
-            <input
-              value={search.keyword}
-              type="text"
-              onChange={(e) => {
-                const value = e.target.value;
-                handleKeywordChange(value);
-              }}
-            />
-          </div>
+          {/* <div> */}
+          {/* <label>Search by keyword</label> */}
+          <input
+            value={search.keyword}
+            placeholder="Search by post title or description"
+            type="text"
+            onChange={(e) => {
+              const value = e.target.value;
+              handleKeywordChange(value);
+            }}
+          />
+          {/* </div> */}
           {/* <div>
             <label>Search by author</label>
             <input

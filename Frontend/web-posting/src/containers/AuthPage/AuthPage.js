@@ -7,17 +7,16 @@ import Header from "../../components/Header/Header";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import { useDispatch, useSelector } from "react-redux";
-import { login, logout } from "../../Redux/user.duck";
+import { login, logout, signup } from "../../Redux/user.duck";
 const AuthPage = (props) => {
   const state = useSelector((state) => state.USER);
   const dispatch = useDispatch();
-  const { isAuthenticated, currentUser } = state;
+  const { isAuthenticated, currentUser, loginError } = state;
   const navigate = useNavigate();
   const location = useLocation();
   const search = queryString.parse(location.search);
   const [tab, setTab] = useState(search?.tab ? search.tab : "signup");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
   useEffect(() => {
     // if (isAuthenticated) {
     //   navigate("/");
@@ -36,27 +35,12 @@ const AuthPage = (props) => {
     if (tab === "signup") {
       const { name, email, password } = values;
       const body = { name, email, password };
-      return axios
-        .post(`http://localhost:3500/api/auth/signup`, body, {
-          withCredentials: true,
-        })
-        .then((res) => {
-          console.log(res);
-          setLoading(false);
-        })
-        .catch((e) => {
-          console.log(e);
-          setLoading(false);
-          setError(
-            typeof e?.response?.data === "string"
-              ? e?.response?.data
-              : e?.message || "Something went wrong"
-          );
-        });
+      if (email && password && name) dispatch(signup(body));
     } else {
       const { email, password } = values;
       if (email && password) dispatch(login({ email, password }));
     }
+    setLoading(false);
   };
   const handleLogout = () => {
     dispatch(logout());
@@ -107,15 +91,13 @@ const AuthPage = (props) => {
             </div>
 
             {tab === "signup" ? (
-              <SignupPage
-                onSubmit={handleSubmit}
-                loading={loading}
-                setError={(val) => setError(val)}
-              />
+              <SignupPage onSubmit={handleSubmit} loading={loading} />
             ) : (
               <LoginPage onSubmit={handleSubmit} loading={loading} />
             )}
-            {error ? <span>{error}</span> : null}
+            {loginError ? (
+              <span>Something went wrong, check password</span>
+            ) : null}
           </div>
         )}
       </div>

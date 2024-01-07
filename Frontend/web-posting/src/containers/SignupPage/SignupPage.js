@@ -10,7 +10,7 @@ const initialState = {
 };
 const SignupPage = (props) => {
   const navigate = useNavigate();
-  const { onSubmit, loading, setError } = props;
+  const { onSubmit, loading } = props;
   const [user, setUser] = useState(initialState);
   const handleInputChange = (e) => {
     const name = e.target.name;
@@ -25,9 +25,7 @@ const SignupPage = (props) => {
       action="/"
       onSubmit={(e) => {
         e.preventDefault();
-        onSubmit(user)
-          .then((res) => navigate("/feed"))
-          .catch((e) => console.log(1123, e));
+        onSubmit(user);
       }}
     >
       <div className={css.inputdiv}>
@@ -81,7 +79,6 @@ const SignupPage = (props) => {
         <button
           className={`${css.finalbtn} ${css.resetbtn}`}
           onClick={(e) => {
-            setError(null);
             setUser(initialState);
           }}
           type="button"

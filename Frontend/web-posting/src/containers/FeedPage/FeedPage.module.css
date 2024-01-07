@@ -1,7 +1,7 @@
 .container{
     max-width: 1440px;
     margin: auto;
-    padding-top: 40px;
+    padding: 40px 40px 0;
 }
 .topdiv{
     display: flex;
@@ -22,5 +22,16 @@
         &:hover{
             text-decoration: underline;
         }
+    }
+}
+.filters{
+    margin: 40px 0;
+    display: flex;
+    justify-content: center;
+    & input{
+        width: 60%;
+        font-size: 18px;
+        padding: 15px;
+        
     }
 }
