@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 const FeedCard = (props) => {
   const state = useSelector((state) => state.USER);
   const navigate = useNavigate();
-  const { currentUser } = state;
+  const { currentUser, isAuthenticated } = state;
   const {
     title,
     content,
@@ -69,7 +69,7 @@ const FeedCard = (props) => {
         )}
       </p>
 
-      {commentValues.isOpen ? (
+      {!isAuthenticated ? null : commentValues.isOpen ? (
         <div className={css.addcomdv}>
           <button type="button" onClick={comment}>
             {!commentValues.comment && commentValues.isOpen
