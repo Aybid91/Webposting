@@ -27,3 +27,4 @@ Technicals
 Challenges-
     - I was not familiar with the changes in newer verion of react and other packages so it took a time to get used to.
     - I had no hands on experience on setting up a node and react project and setting up mongoDB so that took up a bit time.
+    - For some reason mongoDB was not working on localhost when using Meghbela Broadband. MongoDB default port is blocked by Meghbela
