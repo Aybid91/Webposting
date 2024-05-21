@@ -114,7 +114,10 @@ export const login = (values) => async (dispatch, getState) => {
     .then((resp) => {
       dispatch(loggedinAction(resp.data));
     })
-    .catch();
+    .catch((err) => {
+      console.log(err);
+      dispatch(loggedError(err));
+    });
 };
 export const logout = () => async (dispatch, getState) => {
   axios

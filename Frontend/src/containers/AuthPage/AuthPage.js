@@ -8,6 +8,10 @@ import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout, signup } from "../../Redux/user.duck";
+const tabButtonId = {
+  signup: "SignupButton",
+  login: "LoginButton",
+};
 const AuthPage = (props) => {
   const state = useSelector((state) => state.USER);
   const dispatch = useDispatch();
@@ -26,7 +30,14 @@ const AuthPage = (props) => {
     }
   });
   const tabClickHandler = (e) => {
-    const newtab = tab === "signup" ? "login" : "signup";
+    const btn = e.target.id;
+    const newtab =
+      btn === tabButtonId.login
+        ? "login"
+        : btn === tabButtonId.signup
+        ? "signup"
+        : null;
+    console.log(44555, btn, newtab);
     navigate(`/auth?tab=${newtab}`);
     setTab(newtab);
   };
@@ -74,6 +85,7 @@ const AuthPage = (props) => {
               <span>Join us now.</span>
               <div className={css.tabs}>
                 <button
+                  id={tabButtonId.login}
                   className={`${tab === "login" ? css.activeTab : ""}`}
                   type="button"
                   onClick={tabClickHandler}
@@ -81,6 +93,7 @@ const AuthPage = (props) => {
                   Login
                 </button>
                 <button
+                  id={tabButtonId.signup}
                   className={`${tab === "signup" ? css.activeTab : ""}`}
                   type="button"
                   onClick={tabClickHandler}

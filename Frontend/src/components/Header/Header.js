@@ -17,7 +17,7 @@ const Header = (props) => {
   return (
     <div className={headerClass}>
       <div className={css.logocontainer}>
-        <img src={logo} alt="logo" />
+        <img src={logo} alt="logo" onClick={() => navigate("/")} />
       </div>
       <div className={css.menucontainer}>
         <nav className={css.menunav}>

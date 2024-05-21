@@ -17,6 +17,7 @@ const FeedCard = (props) => {
     isEdit = false,
     editFunction,
     _id,
+    renderReadMore = true,
   } = props;
   const [read, setRead] = useState("less");
   const initialCommentValues = {
@@ -58,15 +59,17 @@ const FeedCard = (props) => {
       </div>
 
       <p className={css.content}>
-        {read === "less" ? content.substring(0, 250) : content}
-        {content.length < 250 ? null : (
-          <span
-            className={css.read}
-            onClick={(e) => setRead(read === "less" ? "more" : "less")}
-          >
-            {read === "less" ? "read more" : "read less"}
-          </span>
-        )}
+        {read === "less" ? content.substring(0, 250) + "..." : content}
+        {renderReadMore ? (
+          content.length < 250 ? null : (
+            <span
+              className={css.read}
+              onClick={(e) => setRead(read === "less" ? "more" : "less")}
+            >
+              {read === "less" ? "read more" : "read less"}
+            </span>
+          )
+        ) : null}
       </p>
 
       {!isAuthenticated ? null : commentValues.isOpen ? (

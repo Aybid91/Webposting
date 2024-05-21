@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
-const uri =
-  "mongodb+srv://dibyamonda98:Dibya%401998@webposting.ciwaqbg.mongodb.net/";
+const uri = process.env.MONGO_URI;
 try {
   mongoose.connect(uri);
   console.log("connected to DB");

@@ -43,7 +43,9 @@ const getPostsByAuthorId = async (values) => {
 };
 
 const getAllPosts = async (params) => {
-  const { keyword = "" } = params;
+  const { keyword = "", limit = 0 } = params;
+  console.log(9900, limit);
+  const limitMaybe = limit > 0 ? limit : null;
   const keywordParams = keyword
     ? {
         $or: [
@@ -57,7 +59,9 @@ const getAllPosts = async (params) => {
     const postResp = await PostModel.find({
       ...keywordParams,
       postType: { $ne: "private" },
-    }).populate("authorId", "name");
+    })
+      .limit(limitMaybe)
+      .populate("authorId", "name");
     return postResp;
   } catch (error) {
     console.log(error);
