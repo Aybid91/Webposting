@@ -12,6 +12,7 @@ import { FaStar } from "react-icons/fa";
 import { getLandingPageFeed } from "./LandingPage.duck";
 import { useNavigate } from "react-router";
 import classNames from "classnames";
+import Footer from "../../components/Footer/Footer";
 const gettingStartedContent = [
   {
     key: 1,
@@ -68,7 +69,7 @@ const LandingPage = () => {
     <div>
       <Header />
       <div className={css.heroContainer}>
-        <img className={css.heroImg} src={HeroImg} alt="Hero-Image" />
+        <img className={css.heroImg} src={HeroImg} alt="Hero-Banner" />
         <div className={css.overlay}>
           <p className={css.heroHead1}>Let's Get Social</p>
           <p></p>
@@ -89,21 +90,27 @@ const LandingPage = () => {
       <div className={css.section}>
         <p className={css.sectionHeading}>HERE ARE SOME LATEST POSTS FOR YOU</p>
         <div className={css.feeds}>
-          {feed.map((f, i) => {
-            const { title, content, _id } = f;
-            return (
-              <FeedCard
-                title={title}
-                content={content}
-                mainClassName={css.landingPageFeedCard}
-                authorName={f.authorId.name}
-                _id={_id}
-                key={i}
-                idx={i}
-                renderReadMore={false}
-              />
-            );
-          })}
+          {feedLoading ? (
+            <p>Loading</p>
+          ) : feedError ? (
+            <p>Unable to load feed</p>
+          ) : (
+            feed.map((f, i) => {
+              const { title, content, _id } = f;
+              return (
+                <FeedCard
+                  title={title}
+                  content={content}
+                  mainClassName={css.landingPageFeedCard}
+                  authorName={f.authorId.name}
+                  _id={_id}
+                  key={i}
+                  idx={i}
+                  renderReadMore={false}
+                />
+              );
+            })
+          )}
         </div>
         <button
           className={css.seeAllBtn}
@@ -126,8 +133,9 @@ const LandingPage = () => {
             </div>
           ))}
         </div>
-        <img src={SecImg} />
+        <img src={SecImg} alt="Social" />
       </div>
+      <Footer />
     </div>
   );
 };

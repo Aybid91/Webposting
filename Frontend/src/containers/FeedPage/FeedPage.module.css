@@ -1,37 +1,74 @@
-.container{
-    max-width: 1440px;
-    margin: auto;
-    padding: 40px 40px 0;
+.container {
+  max-width: 1440px;
+  margin: auto;
+  padding: 40px 40px 0;
 }
-.topdiv{
-    display: flex;
-    justify-content:space-between;
-    align-items: center;
-    border-bottom: 4px solid black;
-    padding-bottom: 10px;
-    /* margin: 40px 0 20px; */
-    & span{
-        font-size: 32px;
-        font-weight: 700;
+.topdiv {
+  display: flex;
+  flex-direction: column;
+  & .heading {
+    font-size: 32px;
+    font-weight: 700;
+  }
+  & .feedDetails {
+    background-color: #002435;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-top: 15px;
+  }
+  & button {
+    cursor: pointer;
+    padding: 0;
+    border: 0;
+    font-size: 20px;
+    &:hover {
+      text-decoration: underline;
     }
-    & button {
-        cursor: pointer;
-        padding: 0;
-        border: 0;
-        font-size: 20px;
-        &:hover{
-            text-decoration: underline;
-        }
-    }
+  }
 }
-.filters{
-    margin: 40px 0;
-    display: flex;
-    justify-content: center;
-    & input{
-        width: 60%;
-        font-size: 18px;
-        padding: 15px;
-        
+.filters {
+  margin: 40px 0;
+  display: flex;
+  gap: 20px;
+  & .inputDiv {
+    flex-grow: 1;
+    position: relative;
+    & > button {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translate(0, -50%);
+      background-color: #fff;
+      border: none;
+      cursor: pointer;
+      & svg {
+        width: 20px;
+        height: 20px;
+      }
     }
+    & input {
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 18px;
+      padding: 15px;
+    }
+  }
+  & > button {
+    background: linear-gradient(90deg, #c93b54 27%, #921b98 72%);
+    color: #fff;
+    border: 0;
+    padding: 0 30px;
+    font-size: 18px;
+    border-radius: 5px;
+    flex-shrink: 0;
+    cursor: pointer;
+    &:hover {
+      background: linear-gradient(270deg, #c93b54 27%, #921b98 72%);
+    }
+  }
+}
+.cardsContainer {
+  display: flex;
+  flex-wrap: wrap;
 }
