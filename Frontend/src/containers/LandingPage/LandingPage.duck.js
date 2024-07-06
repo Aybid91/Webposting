@@ -39,7 +39,7 @@ export default function reducer(state = initialState, action = {}) {
 export const getLandingPageFeed = (params) => async (dispatch, getState) => {
   dispatch({ type: GET_FEED_REQUEST });
   axios
-    .post("http://localhost:3500/api/profile/feed", params, {
+    .post("http://localhost:5000/api/profile/feed", params, {
       withCredentials: true,
     })
     .then((res) => {

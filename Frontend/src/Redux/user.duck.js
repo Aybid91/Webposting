@@ -98,7 +98,7 @@ export const fetchUserData = () => async (dispatch, getState) => {
   try {
     dispatch(currentUserShowRequest());
 
-    const data = await axios.get("http://localhost:3500/api/profile/getUser", {
+    const data = await axios.get("http://localhost:5000/api/profile/getUser", {
       withCredentials: true,
     });
     dispatch(currentUserShowSuccess(data.data));
@@ -108,7 +108,7 @@ export const fetchUserData = () => async (dispatch, getState) => {
 };
 export const login = (values) => async (dispatch, getState) => {
   axios
-    .post("http://localhost:3500/api/auth/login", values, {
+    .post("http://localhost:5000/api/auth/login", values, {
       withCredentials: true,
     })
     .then((resp) => {
@@ -121,7 +121,7 @@ export const login = (values) => async (dispatch, getState) => {
 };
 export const logout = () => async (dispatch, getState) => {
   axios
-    .get("http://localhost:3500/api/auth/logout", {
+    .get("http://localhost:5000/api/auth/logout", {
       withCredentials: true,
     })
     .then((resp) => {
@@ -134,7 +134,7 @@ export const logout = () => async (dispatch, getState) => {
 };
 export const signup = (values) => async (dispatch, getState) => {
   axios
-    .post(`http://localhost:3500/api/auth/signup`, values, {
+    .post(`http://localhost:5000/api/auth/signup`, values, {
       withCredentials: true,
     })
     .then((resp) => {

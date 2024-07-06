@@ -132,7 +132,7 @@ export const updatePostsShowError = (e) => ({
 export const getCurrentUserPosts = (search) => async (dispatch, getState) => {
   dispatch(currentUserPostsShowRequest());
   axios
-    .get(`http://localhost:3500/api/profile/getCurrentUserPosts${search}`, {
+    .get(`http://localhost:5000/api/profile/getCurrentUserPosts${search}`, {
       withCredentials: true,
     })
     .then((res) => {
@@ -145,7 +145,7 @@ export const getCurrentUserPosts = (search) => async (dispatch, getState) => {
 export const addPost = (values) => async (dispatch, getState) => {
   dispatch(addPostsShowRequest());
   axios
-    .post("http://localhost:3500/api/profile/addPost", values, {
+    .post("http://localhost:5000/api/profile/addPost", values, {
       withCredentials: true,
     })
     .then((res) => {
@@ -158,7 +158,7 @@ export const addPost = (values) => async (dispatch, getState) => {
 export const updatePost = (values) => async (dispatch, getState) => {
   dispatch(updatePostsShowRequest());
   axios
-    .patch("http://localhost:3500/api/profile/updatepost", values, {
+    .patch("http://localhost:5000/api/profile/updatepost", values, {
       withCredentials: true,
     })
     .then((res) => {

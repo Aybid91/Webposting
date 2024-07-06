@@ -19,7 +19,7 @@ const ViewPostPage = () => {
     try {
       setPostState({ loading: true, error: null });
       const resp = await axios.get(
-        `http://localhost:3500/api/public/showpost?id=${postId}`
+        `http://localhost:5000/api/public/showpost?id=${postId}`
       );
       setPostState({ loading: false, error: null });
       setPost(resp.data.post);
@@ -66,7 +66,7 @@ const ViewPostPage = () => {
                     if (newComment) {
                       axios
                         .post(
-                          "http://localhost:3500/api/profile/addComment",
+                          "http://localhost:5000/api/profile/addComment",
                           {
                             postId,
                             comment: newComment,

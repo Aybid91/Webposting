@@ -36,7 +36,7 @@ const FeedCard = (props) => {
     // const updatedValues =
     else {
       axios
-        .post("http://localhost:3500/api/profile/addComment", commentValues, {
+        .post("http://localhost:5000/api/profile/addComment", commentValues, {
           withCredentials: true,
         })
         .then((res) => {

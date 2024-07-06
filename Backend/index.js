@@ -7,7 +7,7 @@ const cookieParser = require("cookie-parser");
 
 require("./api/mongoConnect");
 const app = express();
-const port = 3500;
+const port = 5000;
 app.use(cookieParser());
 app.use(
   cors({
